@@ -17,7 +17,11 @@
     <strong>Bugtracker:</strong> <a href="http://github.com/jsor/jcarousel/issues">http://github.com/jsor/jcarousel/issues</a><br/>
     <strong>Licence:</strong> Dual licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT</a>
     and <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a> licenses.</p>
-
+  <p>  
+    <strong>Forked Version</strong><br />
+    <strong>Author:</strong> Insertion feature added by <a href="http://codecauldron.com">Doug Goldie</a><br />
+    <strong>Source Code:</strong> <a href="http://github.com/dgoldie/jcarousel">http://github.com/dgoldie/jcarousel</a><br/></p>
+    
   <a name="Contents"></a>
   <h3>Contents</h3>
     <ol>
@@ -217,6 +221,42 @@ jQuery('#mycarousel').jcarousel('add', index, html);</pre>
     <p>This offers a lot of flexibility, because you can define the width in pixel for a fixed carousel or in percent for a flexible carousel (<a href="examples/static_callbacks.html">This example</a> shows a carousel with a clip width in percent, resize the browser to see it in effect).</p>
     <p>So, why there is an option <code>visible</code>? If you set the option <code>visible</code>, jCarousel sets the width of the visible items to always make this number of items visible. Open <a href="examples/special_flexible.html">this example</a> and resize your browser window to see it in effect.</p>
 
+    <a name="Inserting-New-Items"></a>
+    <h3>Inserting new items</h3>
+
+    <p>You can insert a new item before or after an existing item. While the default new element is simply an <code>&lt;li&gt;&lt;/li&gt;</code>, you can also define a css selector to specify a template for your new element (it will be cloned).</p>
+    <p>For example, you can insert a new element <strong>before</strong> the first visible item with:</p>
+    <pre>
+        function mycarousel_initCallback(carousel) {      
+        jQuery('.jcarousel-control a.before').bind('click', function() {
+            carousel.insert(carousel.first, true);
+            return false;
+        });
+        ....
+      });</pre>
+      <p>You can insert a new element <strong>after</strong> the first visible item with:</p>
+      <pre>
+        function mycarousel_initCallback(carousel) {
+          jQuery('.jcarousel-control a.after').bind('click', function() {
+              carousel.insert(carousel.first, false);
+              return false;
+          });
+          ....
+        });</pre>
+      <p>You can define a template for insertion with:</p>
+      <pre>
+        // Ride the carousel...
+        jQuery(document).ready(function() {
+            jQuery("#mycarousel").jcarousel({
+                scroll: 1,
+                insertNewElement: '#templates > .swimlane',
+                initCallback: mycarousel_initCallback
+            });
+        });</pre>        
+      
+        
+        
+ 
     <a name="Configuration"></a>
     <h3>Configuration</h3>
   <p> jCarousel accepts a list of options to control the appearance and behaviour
@@ -487,6 +527,12 @@ itemVisibleOutCallback: {
         <td>null</td>
         <td>If, for some reason, jCarousel can not detect the width of an item, you can set a fallback dimension (width or height, depending on the orientation) here to ensure correct calculations.</td>
       </tr>
+      <tr>
+        <td>insertNewElement</td>
+        <td>string</td>
+        <td><code>&lt;li&gt;&lt;/li&gt;</code></td>
+        <td>Specifies the css selector of a template for new element inserts. If this attribute is provided, when the <code>insert()</code> method is used, the template specified will be cloned.</td>
+      </tr>      
     </tbody>
   </table>
 
