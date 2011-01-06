@@ -5,3 +5,9 @@ The items, which can be static HTML content or loaded with (or without) AJAX, ca
 back and forth (with or without animation).
 
 See index.html for documentation and examples.
+
+
+Forked by Doug Goldie.
+
+Added insert() method to jcarousel with an example.
+You can insert a new element before or after any existing element.
