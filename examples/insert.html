@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<title>jCarousel Examples</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+<!--
+  jQuery library
+-->
+<script type="text/javascript" src="../lib/jquery-1.4.2.min.js"></script>
+<!--
+  jCarousel library
+-->
+<script type="text/javascript" src="../lib/jquery.jcarousel.js"></script>
+<!--
+  jCarousel skin stylesheet
+-->
+<link rel="stylesheet" type="text/css" href="../skins/tango/skin.css" />
+
+<style type="text/css">
+
+/**
+ * Additional styles for the controls.
+ */
+.jcarousel-control {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.jcarousel-control a {
+    font-size: 75%;
+    text-decoration: none;
+    padding: 0 5px;
+    margin: 0 0 5px 0;
+    border: 1px solid #fff;
+    color: #eee;
+    background-color: #4088b8;
+    font-weight: bold;
+}
+
+.jcarousel-control a:focus,
+.jcarousel-control a:active {
+    outline: none;
+}
+
+.jcarousel-scroll {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.jcarousel-scroll form {
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel-scroll select {
+    font-size: 75%;
+}
+
+#mycarousel-next,
+#mycarousel-prev {
+    cursor: pointer;
+    margin-bottom: -10px;
+    text-decoration: underline;
+    font-size: 11px;
+}
+
+#templates {
+  margin-top: 100px;
+}
+.base-element, .swimlane {
+    background: green;
+    width: 75px;
+    height: 75px; 
+}
+
+</style>
+
+<script type="text/javascript">
+/**
+ * We use the initCallback callback
+ * to assign functionality to the controls
+ */
+function mycarousel_initCallback(carousel) {
+    jQuery('.jcarousel-control a.before').bind('click', function() {
+        carousel.insert(carousel.first, true);
+        return false;
+    });
+    
+    jQuery('.jcarousel-control a.after').bind('click', function() {
+        carousel.insert(carousel.first, false);
+        return false;
+    });    
+};
+
+// Ride the carousel...
+jQuery(document).ready(function() {
+    jQuery("#mycarousel").jcarousel({
+        scroll: 1,
+        insertNewElement: '#templates > .swimlane',
+        initCallback: mycarousel_initCallback
+    });
+});
+
+</script>
+
+</head>
+<body>
+<div id="wrap">
+  <h1>jCarousel</h1>
+  <h2>Riding carousels with jQuery</h2>
+
+  <h3>Carousel with controls to insert anew Element dynamically.</h3>
+  <p>
+    This carousel shows how to insert a new element before or after the first visible element.
+  </p>
+
+  <div id="mycarousel" class="jcarousel-skin-tango">
+    <div class="jcarousel-control">
+      <a class='before' href="#">Before</a>
+      <a class='after' href="#">After</a>      
+    </div>
+
+    <ul>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/75/199481072_b4a0d09597_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/57/199481087_33ae73a8de_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/77/199481108_4359e6b971_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/58/199481218_264ce20da0_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/69/199481255_fdfe885f87_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg" alt="" /></li>
+      <li class='unit swimlane'><img width="75" height="75" src="http://static.flickr.com/70/229228324_08223b70fa_s.jpg" alt="" /></li>
+    </ul>
+
+  </div>
+  
+  <div id='templates'>
+    <h3>Template</h3>
+      <li class='unit swimlane'></li>
+  </div>
+
+</div>
+</body>
+</html>
